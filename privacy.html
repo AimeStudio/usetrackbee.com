@@ -33,7 +33,7 @@
     <!-- Header -->
     <header class="hero-gradient py-16 px-6 text-center border-b border-amber-50">
         <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-slate-900">Privacy Policy</h1>
-        <p class="text-slate-500 text-sm mt-3">Last Updated: May 2026</p>
+        <p class="text-slate-500 text-sm mt-3">Last Updated: October 2026</p>
     </header>
 
     <!-- TL;DR Summary Card -->
@@ -46,7 +46,7 @@
             <ul class="space-y-3 text-slate-300 text-sm">
                 <li class="flex items-start gap-3">
                     <i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i>
-                    <span><strong class="text-white">We don't store your data.</strong> Job details go directly from your browser to your Google Sheet — nothing passes through our servers.</span>
+                    <span><strong class="text-white">We don't store your data.</strong> Job details go directly from your browser to your own Google Sheet and Drive — nothing passes through our servers.</span>
                 </li>
                 <li class="flex items-start gap-3">
                     <i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i>
@@ -101,7 +101,8 @@
                 2. How Your Data Is Used
             </h2>
             <p>The sole purpose of accessing job page data like Job Title, Company, and Compensation, is to transport it into your designated Google Sheet.</p>
-            <p><strong>TrackBee has no central database.</strong> We do not intercept, store, or copy your job applications on any servers owned by us. Your data flows directly from your local browser to your Google Account via the official Google Sheets API.</p>
+            <p>When you save a job, TrackBee also saves a copy of the job description as a Google Doc in a "TrackBee Job Descriptions" folder in your Google Drive, and links it from your Tracker. Only the description itself is copied, not the rest of the page. The copy stays readable even if the original posting is taken down.</p>
+            <p><strong>TrackBee has no central database.</strong> We do not intercept, store, or copy your job applications on any servers owned by us. Your data flows directly from your local browser to your Google Account via the official Google Sheets and Google Drive APIs.</p>
         </section>
 
         <section class="space-y-4 reveal">
@@ -110,7 +111,7 @@
                 3. Google API Services Disclosure
             </h2>
             <p>TrackBee's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" class="text-amber-600 hover:underline font-semibold">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
-            <p>When you authenticate TrackBee with your Google Account, we request only the minimum permissions needed to append rows to the specific spreadsheet URL you provide. We cannot read your emails, and we do not have access to any other Google Drive files.</p>
+            <p>When you authenticate TrackBee with your Google Account, we request only Google's <code>drive.file</code> permission, which limits TrackBee to the files it creates: your Tracker sheet, and the "TrackBee Job Descriptions" folder and the documents in it. We cannot read your emails, and we do not have access to any other files in your Google Drive.</p>
         </section>
 
         <section class="space-y-4 reveal">

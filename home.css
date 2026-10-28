@@ -1,85 +1,4 @@
-/* ── Home page (index.html) ── */
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap');
-
-:root {
-    --honey: #f5b301;
-    --honey-deep: #d98e04;
-    --honey-soft: #fff3c4;
-    --cream: #fffaf0;
-    --ink: #1c1917;
-    --ink-2: #44403c;
-    --muted: #78716c;
-    --line: #ece4d3;
-    --sheet-green: #188038;
-    --doc-blue: #2f6fe4;
-    --radius: 20px;
-    --shadow: 0 1px 2px rgba(28, 25, 23, .06), 0 12px 32px -8px rgba(28, 25, 23, .18);
-}
-
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body {
-    margin: 0;
-    font-family: 'Inter', system-ui, sans-serif;
-    color: var(--ink);
-    background: var(--cream);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-}
-img, video { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-h1, h2, h3 {
-    font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    margin: 0;
-}
-
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-/* On large screens the hero scene scales up (--scene-scale, set in index.html); every other
-   container widens to the same edges so the margins line up down the page */
-.wrap { max-width: calc(1160px * var(--scene-scale, 1) - 48px * (var(--scene-scale, 1) - 1)); }
-.scene-grid.wrap { max-width: 1160px; }
-@media (max-width: 640px) { .wrap { padding: 0 16px; } }
-
-.section-label {
-    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
-    color: var(--honey-deep); margin-bottom: 14px;
-}
-.section-title { font-size: clamp(32px, 4.6vw, 52px); font-weight: 800; }
-.section-lede { font-size: 18px; color: var(--ink-2); max-width: 560px; margin: 18px 0 0; }
-
-/* Buttons */
-.btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    font-weight: 700; font-size: 16px;
-    padding: 14px 22px; border-radius: 14px;
-    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-.btn:active { transform: translateY(1px); }
-.btn-primary { background: var(--ink); color: #fff; box-shadow: 0 6px 0 -1px var(--honey), 0 12px 24px -10px rgba(28,25,23,.5); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 0 -1px var(--honey), 0 16px 28px -10px rgba(28,25,23,.5); }
-.btn-ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
-.btn-ghost:hover { border-color: var(--honey); }
-
-/* Nav */
-.nav {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(255, 250, 240, .85);
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid transparent;
-    transition: border-color .2s ease;
-}
-.nav.scrolled { border-bottom-color: var(--line); }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
-.brand img { height: 36px; width: auto; }
-.nav-links { display: flex; align-items: center; gap: 28px; font-size: 15px; font-weight: 500; color: var(--ink-2); }
-.nav-links a:not(.btn):hover { color: var(--honey-deep); }
-.nav-links .btn { padding: 10px 16px; font-size: 14px; border-radius: 12px; box-shadow: none; }
-@media (max-width: 860px) { .nav-links a:not(.btn) { display: none; } }
-
+/* ── Home page (index.html), on top of site.css ── */
 /* Hero → saved copy scene */
 .scene-pin { position: relative; overflow: hidden; }
 .scene-pin::before {
@@ -147,10 +66,6 @@ h1, h2, h3 {
 
 /* Hero visual: Tracker row + saved Doc copy */
 .flow { position: relative; height: 440px; }
-.card {
-    background: #fff; border: 1px solid var(--line); border-radius: 16px;
-    box-shadow: var(--shadow);
-}
 .bar { height: 7px; border-radius: 4px; background: #f1ece2; margin-bottom: 7px; }
 .bar.w90 { width: 90%; } .bar.w75 { width: 75%; } .bar.w60 { width: 60%; } .bar.w82 { width: 82%; }
 
@@ -463,19 +378,3 @@ h1, h2, h3 {
 .final h2 { font-size: clamp(36px, 5.4vw, 60px); font-weight: 800; max-width: 760px; margin: 0 auto; }
 .final p { font-size: 18px; color: var(--ink-2); margin: 20px auto 36px; max-width: 520px; }
 .final .hero-cta { justify-content: center; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
-/* Footer */
-.footer { border-top: 1px solid var(--line); padding: 36px 0; font-size: 14px; color: var(--muted); }
-.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-.footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
-.footer nav a:hover { color: var(--honey-deep); }
-
-/* Reveal */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .reveal { opacity: 1; transform: none; }
-}

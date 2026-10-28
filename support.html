@@ -236,17 +236,86 @@
         <div id="no-results" class="hidden text-center py-12">
             <i class="fas fa-search text-4xl text-slate-200 mb-4"></i>
             <h3 class="text-lg font-bold text-slate-600">No answers found</h3>
-            <p class="text-slate-400">Try a different keyword or contact support.</p>
+            <p class="text-slate-400">Try a different keyword or <a href="#contact" class="text-amber-600 font-semibold hover:underline">send us a message</a>.</p>
         </div>
 
-        <!-- Contact CTA -->
-        <div class="text-center mt-16 pt-16 border-t border-slate-100">
-            <h3 class="text-xl font-bold mb-4">Still have questions?</h3>
-            <p class="text-slate-500 mb-6">We're built by humans, for humans. Reach out.</p>
-            <a href="mailto:support@usetrackbee.com?subject=TrackBee%20Inquiry" class="inline-flex items-center gap-2 text-amber-600 font-bold hover:text-amber-700 hover:underline">
-                <i class="fas fa-envelope"></i> Email Support
-            </a>
-        </div>
+        <!-- Contact form -->
+        <section id="contact" class="mt-16 pt-16 border-t border-slate-100 scroll-mt-24">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold mb-3">Still have questions?</h3>
+                <p class="text-slate-500">Report a bug, ask a question or share an idea.</p>
+            </div>
+
+            <form id="support-form" class="bg-slate-50 border border-slate-200 rounded-2xl p-6 md:p-8 space-y-5" novalidate>
+                <div class="grid md:grid-cols-2 gap-5">
+                    <label class="block">
+                        <span class="block text-sm font-semibold text-slate-700 mb-1.5">Name <span class="font-normal text-slate-400">(optional)</span></span>
+                        <input type="text" name="name" autocomplete="name" maxlength="100" class="field">
+                    </label>
+                    <label class="block">
+                        <span class="block text-sm font-semibold text-slate-700 mb-1.5">Email <span class="font-normal text-slate-400">(optional)</span></span>
+                        <input type="email" name="email" autocomplete="email" maxlength="200" class="field" placeholder="you@example.com">
+                    </label>
+                </div>
+
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1.5">Topic</span>
+                    <select name="topic" required class="field">
+                        <option value="" disabled selected>Choose a topic</option>
+                        <option>Bug</option>
+                        <option>Question</option>
+                        <option>Feature request</option>
+                        <option>Other</option>
+                    </select>
+                </label>
+
+                <label class="block" id="bug-type-field" hidden>
+                    <span class="block text-sm font-semibold text-slate-700 mb-1.5">Bug type</span>
+                    <select name="bug_type" class="field">
+                        <option value="" disabled selected>Choose a bug type</option>
+                        <option>Can't connect to Google</option>
+                        <option>Job page not detected</option>
+                        <option>Wrong or missing job details</option>
+                        <option>Save failed</option>
+                        <option>Job description copy missing</option>
+                        <option>Extension won't open</option>
+                        <option>Something else</option>
+                    </select>
+                </label>
+
+                <label class="block" id="job-url-field" hidden>
+                    <span class="block text-sm font-semibold text-slate-700 mb-1.5">Job page URL</span>
+                    <input type="url" name="job_url" maxlength="2000" class="field" placeholder="https://">
+                </label>
+
+                <label class="block">
+                    <span class="block text-sm font-semibold text-slate-700 mb-1.5">Message</span>
+                    <textarea name="message" required rows="6" maxlength="5000" class="field resize-y" placeholder="Tell us what happened, or what you'd like to see."></textarea>
+                </label>
+
+                <!-- Spam trap: hidden from people, bots tend to fill it in -->
+                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
+
+                <p id="form-error" class="hidden text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-4 py-3"></p>
+
+                <div class="flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-4 pt-1">
+                    <p class="text-xs text-slate-400">We only use your email to follow up on your message. <a href="privacy.html#support" class="underline hover:text-amber-600">Privacy</a></p>
+                    <button type="submit" id="form-submit" class="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:opacity-60 disabled:cursor-wait text-white font-bold px-6 py-3 rounded-xl transition">
+                        <i class="fas fa-paper-plane"></i> <span>Send message</span>
+                    </button>
+                </div>
+            </form>
+
+            <div id="form-success" class="hidden text-center bg-amber-50 border border-amber-100 rounded-2xl px-6 py-12">
+                <img src="assets/mrbee.png" alt="" class="h-14 w-auto mx-auto mb-4 bee-float">
+                <h4 class="text-xl font-bold mb-2">Your message is on its way.</h4>
+                <p class="text-slate-600">Thanks for helping us improve TrackBee.</p>
+            </div>
+
+            <p class="text-center text-sm text-slate-500 mt-6">
+                Prefer email? Write to <a href="mailto:support@usetrackbee.com?subject=TrackBee%20Inquiry" class="text-amber-600 font-semibold hover:underline">support@usetrackbee.com</a>
+            </p>
+        </section>
 
     </main>
 
@@ -336,6 +405,109 @@
             filterFAQs('');
             searchInput.focus();
         });
+    </script>
+
+    <!-- Support form -->
+    <script>
+        (() => {
+            // Web3Forms access key for support@usetrackbee.com. It is safe to publish:
+            // it can only send messages to that inbox.
+            const ACCESS_KEY = '6b87c11e-cd86-4b27-92f9-eb0db815141d';
+            const SUPPORT_EMAIL = 'support@usetrackbee.com';
+
+            const form = document.getElementById('support-form');
+            const submitBtn = document.getElementById('form-submit');
+            const errorBox = document.getElementById('form-error');
+            const success = document.getElementById('form-success');
+            const bugTypeField = document.getElementById('bug-type-field');
+            const jobUrlField = document.getElementById('job-url-field');
+            // Bug types where the job page link helps us reproduce the problem
+            const NEEDS_JOB_URL = ['Job page not detected', 'Wrong or missing job details'];
+
+            // The extension menu links to support.html?from=extension&v=1.2.3#contact
+            const params = new URLSearchParams(location.search);
+            const context = {
+                'Sent from': params.get('from') === 'extension' ? 'Extension menu' : 'Support page',
+                'Extension version': params.get('v') || 'Unknown',
+                'Browser': browserName(),
+            };
+            if ([...form.topic.options].some(o => o.value && o.value === params.get('topic'))) form.topic.value = params.get('topic');
+
+            // Bug type only shows (and is only required) for bugs; the job URL likewise for page-specific bugs
+            function syncFields() {
+                const isBug = form.topic.value === 'Bug';
+                bugTypeField.hidden = !isBug;
+                form.bug_type.required = isBug;
+                jobUrlField.hidden = !(isBug && NEEDS_JOB_URL.includes(form.bug_type.value));
+                form.job_url.required = !jobUrlField.hidden;
+            }
+            form.topic.addEventListener('change', syncFields);
+            form.bug_type.addEventListener('change', syncFields);
+            syncFields();
+
+            function browserName() {
+                const brands = navigator.userAgentData?.brands?.filter(b => !/Not.?A.?Brand|Chromium/i.test(b.brand));
+                if (brands?.length) return brands.map(b => `${b.brand} ${b.version}`).join(', ') + ` on ${navigator.userAgentData.platform}`;
+                return navigator.userAgent;
+            }
+
+            function showError(html) {
+                errorBox.innerHTML = html;
+                errorBox.classList.remove('hidden');
+            }
+
+            const topicLabel = (fields) => form.topic.value === 'Bug' ? `Bug – ${fields.bug_type}` : fields.topic;
+
+            function mailtoFallback(fields) {
+                const body = [fields.message, '', ...(!jobUrlField.hidden && fields.job_url ? [`Job page URL: ${fields.job_url}`] : []), ...Object.entries(context).map(([k, v]) => `${k}: ${v}`)].join('\n');
+                return `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('TrackBee: ' + topicLabel(fields))}&body=${encodeURIComponent(body)}`;
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorBox.classList.add('hidden');
+                if (!form.reportValidity()) return;
+
+                const fields = Object.fromEntries(new FormData(form));
+                if (fields.botcheck) return;
+
+                submitBtn.disabled = true;
+                submitBtn.querySelector('span').textContent = 'Sending…';
+
+                const payload = {
+                    access_key: ACCESS_KEY,
+                    subject: `TrackBee support: ${topicLabel(fields)}`,
+                    from_name: 'TrackBee Support Form',
+                    name: fields.name || 'Not given',
+                    ...(fields.email ? { email: fields.email } : {}),
+                    topic: fields.topic,
+                    ...(fields.topic === 'Bug' ? { 'Bug type': fields.bug_type } : {}),
+                    ...(!jobUrlField.hidden && fields.job_url ? { 'Job page URL': fields.job_url } : {}),
+                    message: fields.message,
+                    ...context,
+                    botcheck: false,
+                };
+
+                try {
+                    const res = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    if (!res.ok || !data.success) throw new Error(data.message || res.statusText);
+
+                    form.classList.add('hidden');
+                    success.classList.remove('hidden');
+                    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } catch (err) {
+                    showError(`Sorry, your message didn't send. Please try again, or <a class="underline font-semibold" href="${mailtoFallback(fields)}">email us directly</a>.`);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('span').textContent = 'Send message';
+                }
+            });
+        })();
     </script>
 
 </body>

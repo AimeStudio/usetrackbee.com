@@ -229,6 +229,17 @@
             window.addEventListener('scroll', onScroll, { passive: true });
             onScroll();
 
+            // Match the home page's width on large screens: it scales its hero scene up past
+            // 1366px wide (--scene-scale, see index.html), and site.css widens .wrap with it
+            const scaleQuery = matchMedia('(min-width: 961px) and (min-height: 620px) and (prefers-reduced-motion: no-preference)');
+            const updateScale = () => {
+                const s = Math.min(1.45, Math.max(1, Math.min(innerWidth / 1366, (innerHeight - 68) / 792)));
+                if (scaleQuery.matches) document.documentElement.style.setProperty('--scene-scale', s.toFixed(3));
+                else document.documentElement.style.removeProperty('--scene-scale');
+            };
+            window.addEventListener('resize', updateScale);
+            updateScale();
+
             // Scroll-reveal
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });

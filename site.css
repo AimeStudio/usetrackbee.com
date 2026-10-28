@@ -39,7 +39,8 @@ h1, h2, h3 {
 }
 
 .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-/* On large screens the hero scene scales up (--scene-scale, set in index.html); every other
+/* On large screens the hero scene scales up (--scene-scale, set in index.html, and the same way
+   on the other pages so their nav and footer match); every other
    container widens to the same edges so the margins line up down the page */
 .wrap { max-width: calc(1160px * var(--scene-scale, 1) - 48px * (var(--scene-scale, 1) - 1)); }
 .scene-grid.wrap { max-width: 1160px; }

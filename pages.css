@@ -3,7 +3,8 @@
 .narrow { max-width: 808px; }
 
 /* Page header: same honey glow and corner honeycomb as the home hero */
-.page-hero { position: relative; overflow: hidden; isolation: isolate; padding: 72px 0 40px; }
+/* The header keeps the cream tint and glow; the content below sits on white */
+.page-hero { position: relative; overflow: hidden; isolation: isolate; padding: 72px 0 56px; border-bottom: 1px solid var(--line); }
 .page-hero::before {
     content: ''; position: absolute; inset: 0; z-index: -1;
     background: radial-gradient(600px 360px at 85% 0%, rgba(245, 179, 1, .2), transparent 70%);
@@ -17,8 +18,8 @@
 }
 .page-title { font-size: clamp(40px, 5.4vw, 60px); font-weight: 800; }
 .page-sub { margin: 16px 0 0; font-size: 15px; color: var(--muted); }
-.page-body { padding: 24px 0 112px; }
-@media (max-width: 640px) { .page-hero { padding: 48px 0 32px; } .page-body { padding-bottom: 80px; } }
+.page-body { padding: 56px 0 112px; background: #fff; }
+@media (max-width: 640px) { .page-hero { padding: 48px 0 40px; } .page-body { padding: 40px 0 80px; } }
 
 /* Section heading with a honey icon tile (as in the home page's saved-copy points) */
 .ico-title { display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 800; margin: 0 0 18px; }
@@ -76,7 +77,7 @@
 
 /* Support: FAQ */
 .faq-section { margin-top: 56px; }
-.narrow > .faq-section:first-child { margin-top: 16px; }
+.narrow > .faq-section:first-child { margin-top: 0; }
 .faq-list { display: grid; gap: 12px; }
 .faq-item { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: box-shadow .2s ease, border-color .2s ease; }
 .faq-item[open] { box-shadow: var(--shadow); }
@@ -104,11 +105,11 @@
 .field-label span { font-weight: 400; color: #a8a29e; }
 .field {
     width: 100%; font: inherit; font-size: 16px; color: var(--ink);
-    background: var(--cream); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+    background: #fff; border: 1px solid #e2dbcc; border-radius: 12px; padding: 12px 14px;
     transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
 }
 .field::placeholder, select.field:invalid { color: #a8a29e; }
-.field:focus { outline: none; background: #fff; border-color: var(--honey); box-shadow: 0 0 0 3px rgba(245, 179, 1, .25); }
+.field:focus { outline: none; border-color: var(--honey); box-shadow: 0 0 0 3px rgba(245, 179, 1, .25); }
 textarea.field { resize: vertical; min-height: 140px; }
 select.field {
     appearance: none; -webkit-appearance: none; padding-right: 40px;

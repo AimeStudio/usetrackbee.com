@@ -71,7 +71,7 @@
 /* Support: search */
 .search { position: relative; max-width: 600px; margin-top: 32px; }
 .search > i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--ink-2); font-size: 17px; }
-.search input { padding-left: 52px; padding-right: 48px; font-size: 17px; height: 60px; border: 1.5px solid #d6cdb9; border-radius: 16px; box-shadow: 0 2px 4px rgba(28, 25, 23, .06), 0 16px 36px -10px rgba(28, 25, 23, .22); }
+.search input { padding-left: 52px; padding-right: 48px; font-size: 17px; height: 60px; border: 1.5px solid #d6cdb9; border-radius: 16px; }
 .search input::placeholder { color: var(--muted); }
 .search input:focus { border-color: var(--honey); }
 .search button { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); border: 0; background: none; cursor: pointer; color: #c9c2b4; font-size: 18px; padding: 4px; }

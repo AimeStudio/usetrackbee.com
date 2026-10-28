@@ -1,471 +1,591 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth scroll-pt-20">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrackBee | One-Click Job Tracker for Google Sheets</title>
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Save any job posting to your own Google Sheet in one click. TrackBee also keeps a copy of the job description as a Google Doc, so you still have it after the posting comes down.">
+    <meta property="og:title" content="TrackBee | One-Click Job Tracker for Google Sheets">
+    <meta property="og:description" content="One click saves the job to your Google Sheet and a copy of the job description to your Google Drive.">
+    <meta property="og:image" content="https://usetrackbee.com/assets/step4.png">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" href="home.css">
 </head>
 
-<body class="bg-white text-slate-900 overflow-x-hidden">
+<body>
 
     <!-- Navigation -->
-    <div class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
-        <nav class="mx-12 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-2">
-                <img src="assets/mrbee.png" alt="Mr. Bee" class="h-9 w-auto bee-float">
-                <span class="text-xl font-extrabold tracking-tight text-slate-900">TrackBee</span>
+    <header class="nav" id="nav">
+        <div class="wrap nav-inner">
+            <a href="index.html" class="brand">
+                <img src="assets/mrbee.png" alt="">
+                TrackBee
             </a>
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-                <a href="#how-it-works-desktop" class="hover:text-amber-600 transition">How it Works</a>
-                <a href="#features" class="hover:text-amber-600 transition">Key Features</a>
-                <a href="support.html" class="hover:text-amber-600 transition">Support Center</a>
-                <a href="https://chromewebstore.google.com/detail/trackbee-job-tracker-for/ncgglpjphaeeijgcmfojhafficeecapo" target="_blank"
-                   class="bg-amber-100 text-amber-700 px-4 py-2 rounded-full hover:bg-amber-200 transition font-bold">
-                   Install Now
+            <nav class="nav-links">
+                <a href="#how-it-works">How it works</a>
+                <a href="#privacy">Privacy</a>
+                <a href="support.html">Support</a>
+                <a href="https://chromewebstore.google.com/detail/trackbee-job-tracker-for/ncgglpjphaeeijgcmfojhafficeecapo" target="_blank" rel="noopener" class="btn btn-primary">
+                    <i class="fab fa-chrome"></i> Install now
                 </a>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
+    </header>
 
-
-    <!-- Hero -->
-    <header class="hero hero-gradient flex flex-col overflow-hidden">
-        
-        <!-- Hero content: split layout on md+, stacked on mobile -->
-        <div class="flex-1 flex items-center justify-center py-16">
-            <div class="section-inner w-full flex flex-col md:flex-row items-center gap-8 md:gap-10">
-
-                <!-- Left: text + CTA -->
-                <div class="w-full md:w-2/3 text-left">
-                    <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-5 bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-700">
-                        Stop Copy-Pasting.
-                        <span class="block mt-3 text-amber-500 underline decoration-amber-200 decoration-4 underline-offset-8">Just Click.</span>
-                    </h1>
-                    <p class="hero-sub text-lg text-slate-600 mb-8 leading-relaxed">
-                        Turn your Google Sheets into a 1-click job tracker.
+    <!-- Hero → saved copy: one scene. On desktop it pins while scrolling: the hero copy
+         and Tracker leave, the Doc grows into the full saved copy, and the saved-copy text arrives. -->
+    <section class="scene" id="scene">
+        <div class="scene-pin">
+            <div class="wrap scene-grid">
+                <div class="hero-copy">
+                    <h1>The <span class="hl">simplest</span> way to track your job search.</h1>
+                    <p class="hero-sub">
+                        TrackBee turns your <strong>Google Sheet</strong> into a job tracker in one click, and saves
+                        a copy of each job description so you never lose it.
                     </p>
-                    <div class="hero-cta flex flex-col sm:flex-row gap-3">
-                        <a href="https://buymeacoffee.com/eemia.studio" target="_blank"
-                           class="bg-white border border-slate-200 text-slate-600 px-6 py-3 rounded-xl font-bold text-base hover:border-amber-400 transition flex items-center justify-center gap-2">
-                            Support Us
+                    <div class="hero-cta">
+                        <a href="https://chromewebstore.google.com/detail/trackbee-job-tracker-for/ncgglpjphaeeijgcmfojhafficeecapo" target="_blank" rel="noopener" class="btn btn-primary">
+                            <i class="fab fa-chrome"></i> Add to Chrome, it's free
                         </a>
-                        <a href="https://chromewebstore.google.com/detail/trackbee-job-tracker-for/ncgglpjphaeeijgcmfojhafficeecapo" target="_blank"
-                           class="btn-pulse bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-base hover:bg-slate-800 transition shadow-xl shadow-slate-200 flex items-center justify-center gap-3">
-                            <i class="fab fa-chrome"></i> Add to Chrome
-                        </a>
+                        <a href="#how-it-works" class="btn btn-ghost">See how it works</a>
+                    </div>
+                    <div class="hero-note">
+                        <span><i class="fas fa-lock"></i> No account, no servers</span>
+                        <span><i class="fas fa-table"></i> Your Sheet, your data</span>
                     </div>
                 </div>
 
-                <!-- Right: demo video -->
-                <div class="w-full md:w-1/3 flex items-center justify-center" style="min-height:0;">
-                    <div style="border-radius: 12px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.08); width: 100%;">
-                        <div style="border-radius: 12px; overflow: hidden; width: 100%;">
-                            <video
-                                src="assets/demo.mp4"
-                                autoplay
-                                muted
-                                loop
-                                playsinline
-                                style="width:100%; max-height:100%; object-fit:contain; display:block;"
-                            ></video>
+                <!-- Visual: Tracker row + saved Doc copy -->
+                <div class="art">
+                    <div class="flow" aria-hidden="true">
+                        <div class="bee-trail">
+                            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <path d="M 4 98 C 6 62, 34 74, 42 50 S 62 22, 74 26" vector-effect="non-scaling-stroke"/>
+                            </svg>
+                            <img src="assets/mrbee.png" alt="">
+                        </div>
+
+                        <div class="doc-stack">
+                            <div class="card doc-ghost g2"></div>
+                            <div class="card doc-ghost g1"></div>
+                            <div class="card doc">
+                                <div class="file-head">
+                                    <span class="file-icon docs"></span>
+                                    <span class="doc-name"><span class="path">TrackBee Job Descriptions /</span>Senior Product Designer</span>
+                                </div>
+                                <div class="doc-body">
+                                    <h5>Senior Product Designer</h5>
+                                    <div class="kv"><b>Company:</b> Figma</div>
+                                    <div class="kv x"><b>Location:</b> San Francisco, CA</div>
+                                    <div class="kv"><b>Compensation:</b> $170K–$220K</div>
+                                    <div class="kv x"><b>Original posting:</b> <span class="u">figma.com/careers/…</span></div>
+                                    <div class="kv"><b>Date saved:</b> 2026-10-27</div>
+                                    <hr>
+                                    <div class="h x">About the role</div>
+                                    <div class="bar w90"></div>
+                                    <div class="bar w82"></div>
+                                    <div class="bar w75"></div>
+                                    <div class="h x">What you'll do</div>
+                                    <div class="bar w82"></div>
+                                    <div class="bar w60"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card sheet">
+                            <div class="file-head"><span class="file-icon sheets"></span> Application Tracker by TrackBee</div>
+                            <table>
+                                <tr><th class="c-title">Job Title</th><th class="c-co hide-sm">Company</th><th class="c-pay">Compensation</th><th class="c-status">Status</th><th class="c-doc">Saved Copy</th></tr>
+                                <tr><td>UX Designer</td><td class="hide-sm">Stripe</td><td>$140K–$175K</td><td><span class="pill">Applied</span></td><td><span class="link">Open Doc</span></td></tr>
+                                <tr><td>Design Lead</td><td class="hide-sm">Airbnb</td><td>$185K–$230K</td><td><span class="pill int">Interviewing</span></td><td><span class="link">Open Doc</span></td></tr>
+                                <tr><td>Product Designer</td><td class="hide-sm">Notion</td><td>$150K–$190K</td><td><span class="pill saved">Saved</span></td><td><span class="link">Open Doc</span></td></tr>
+                                <tr class="new"><td>Senior Product Designer</td><td class="hide-sm">Figma</td><td>$170K–$220K</td><td><span class="pill">Applied</span></td><td><span class="link">Open Doc</span></td></tr>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-
-    </header>
-
-    <!-- Platform rolling banner -->
-    <div class="border-y border-slate-100 bg-white py-8 overflow-hidden">
-        <p class="text-xs font-semibold text-slate-400 tracking-widest text-center mb-6 uppercase">Works on your favorite job boards &amp; ATS platforms</p>
-        <div class="marquee-track">
-            <div class="marquee-content" id="marquee-content"></div>
-        </div>
-    </div>
-
-
-    <!-- How it Works -->
-    <!--
-        DESKTOP (md+): scroll-driven sticky layout — 500vh tall section, sticky panel, JS-driven tab switching
-        MOBILE (<md):  simple stacked cards, no JS needed
-    -->
-
-    <!-- MOBILE: stacked cards (hidden on md+) -->
-    <section id="how-it-works" class="md:hidden bg-white py-20 px-6">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold mb-2">How it Works</h2>
-            <p class="text-slate-500 text-base">Browse jobs on any platform, let TrackBee handle the tracking.</p>
-        </div>
-        <div class="flex flex-col gap-10 max-w-lg mx-auto">
-
-            <!-- Mobile Step 1 -->
-            <div class="flex flex-col items-center text-center">
-                <img src="assets/step1.png" alt="Connect" class="w-full rounded-2xl mb-5 object-contain shadow-sm">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">1</div>
-                    <h3 class="text-xl font-bold">Connect once, track forever.</h3>
+                <div class="jd-copy reveal" id="saved-copy">
+                    <div class="section-label">Saved job descriptions</div>
+                    <h2 class="section-title">Postings disappear.<br>Your copy doesn't.</h2>
+                    <p class="section-lede">
+                        Companies often take a posting down once they stop accepting applications.
+                        TrackBee keeps a copy for you.
+                    </p>
+                    <ul class="jd-points">
+                        <li>
+                            <span class="ico"><i class="fas fa-file-lines"></i></span>
+                            <div><b>A Google Doc for every job</b><span>Each Doc has the job details and full description.</span></div>
+                        </li>
+                        <li>
+                            <span class="ico"><i class="fas fa-folder"></i></span>
+                            <div><b>Kept in one folder in your Drive</b><span>All copies go to a "TrackBee Job Descriptions" folder you own.</span></div>
+                        </li>
+                        <li>
+                            <span class="ico"><i class="fas fa-link"></i></span>
+                            <div><b>Linked from your Tracker</b><span>Click "Open Doc" to see the job description.</span></div>
+                        </li>
+                    </ul>
                 </div>
-                <p class="text-slate-600 text-sm">Sign in with Google to get started. TrackBee only accesses the files it creates, nothing else in your Drive.</p>
             </div>
 
-            <!-- Mobile Step 2 -->
-            <div class="flex flex-col items-center text-center">
-                <img src="assets/step2.png" alt="Browse" class="w-full rounded-2xl mb-5 object-contain shadow-sm">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">2</div>
-                    <h3 class="text-xl font-bold">Browse jobs on your favorite platforms.</h3>
-                </div>
-                <p class="text-slate-600 text-sm">Spot a job you like? A <span class="bg-green-200 px-1 rounded font-bold">+</span> badge on the extension icon means TrackBee is ready to capture.</p>
-            </div>
-
-            <!-- Mobile Step 3 -->
-            <div class="flex flex-col items-center text-center">
-                <img src="assets/step3.png" alt="Click" class="w-full rounded-2xl mb-5 object-contain shadow-sm">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">3</div>
-                    <h3 class="text-xl font-bold">One click, done.</h3>
-                </div>
-                <p class="text-slate-600 text-sm">Key job data is captured and saved to your Google Sheet Tracker in a single click.</p>
-            </div>
-
-            <!-- Mobile Step 4 -->
-            <div class="flex flex-col items-center text-center">
-                <img src="assets/step4.png" alt="Track" class="w-full rounded-2xl mb-5 object-contain shadow-sm">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">4</div>
-                    <h3 class="text-xl font-bold">Your job search, organized.</h3>
-                </div>
-                <p class="text-slate-600 text-sm">Every saved job becomes a clean row in your Google Sheet Tracker. Organized, searchable, and 100% yours.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- DESKTOP: auto-tab switcher (hidden on mobile) -->
-    <section id="how-it-works-desktop" class="hidden md:block bg-white py-20" style="max-height: 800px;">
-
-        <!-- Section heading -->
-        <div class="section-inner text-center mb-10 reveal">
-            <h2 class="text-3xl md:text-4xl font-bold mb-2">How it Works</h2>
-            <p class="text-slate-500 text-base md:text-lg">Browse jobs on any platform, let TrackBee handle the tracking.</p>
-        </div>
-
-        <!-- Two-column body -->
-        <div class="section-inner flex flex-row gap-8 items-stretch w-full pb-10 reveal" style="height: 520px;">
-
-            <!-- Left: step nav -->
-            <div class="w-1/5 flex flex-col gap-2 flex-shrink-0 justify-center">
-                <button data-step="0" class="step-btn text-left px-4 py-4 rounded-2xl border-2 border-transparent transition group">
-                    <div class="flex items-center gap-3" style="position:relative;z-index:1;">
-                        <div class="step-num w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" data-num="0">1</div>
-                        <h4 class="font-bold text-base">Connect</h4>
-                    </div>
-                </button>
-                <button data-step="1" class="step-btn text-left px-4 py-4 rounded-2xl border-2 border-transparent transition group">
-                    <div class="flex items-center gap-3" style="position:relative;z-index:1;">
-                        <div class="step-num w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" data-num="1">2</div>
-                        <h4 class="font-bold text-base">Browse</h4>
-                    </div>
-                </button>
-                <button data-step="2" class="step-btn text-left px-4 py-4 rounded-2xl border-2 border-transparent transition group">
-                    <div class="flex items-center gap-3" style="position:relative;z-index:1;">
-                        <div class="step-num w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" data-num="2">3</div>
-                        <h4 class="font-bold text-base">Click</h4>
-                    </div>
-                </button>
-                <button data-step="3" class="step-btn text-left px-4 py-4 rounded-2xl border-2 border-transparent transition group">
-                    <div class="flex items-center gap-3" style="position:relative;z-index:1;">
-                        <div class="step-num w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" data-num="3">4</div>
-                        <h4 class="font-bold text-base">Track</h4>
-                    </div>
-                </button>
-            </div>
-
-            <!-- Right: content panel -->
-            <div class="flex-1 bg-white rounded-3xl border border-slate-100 overflow-hidden relative">
-
-                <!-- Step 1 -->
-                <div class="step-panel absolute inset-0 opacity-0 pointer-events-none" data-panel="0">
-                    <img src="assets/step1.png" alt="Connect to Google Sheet" class="w-full h-full object-contain object-center" style="background:#1A1A1A;">
-                    <div class="step-caption">
-                        <h3 class="text-xl font-bold mb-1">Connect once, track forever.</h3>
-                        <p class="text-sm opacity-80">Sign in with Google to get started. TrackBee only accesses the files it creates, nothing else.</p>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="step-panel absolute inset-0 opacity-0 pointer-events-none" data-panel="1">
-                    <img src="assets/step2.png" alt="Browse" class="w-full h-full object-contain object-center" style="background:#1A1A1A;">
-                    <div class="step-caption">
-                        <h3 class="text-xl font-bold mb-1">Browse jobs on your favorite platforms.</h3>
-                        <p class="text-sm opacity-80">Spot a job you like? A <span class="bg-green-300 text-green-900 px-1 rounded font-bold">+</span> badge on the extension icon means TrackBee is ready to capture.</p>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="step-panel absolute inset-0 opacity-0 pointer-events-none" data-panel="2">
-                    <img src="assets/step3.png" alt="Click" class="w-full h-full object-contain object-center" style="background:#1A1A1A;">
-                    <div class="step-caption">
-                        <h3 class="text-xl font-bold mb-1">One click, done.</h3>
-                        <p class="text-sm opacity-80">Key job data is captured and saved to your Google Sheet Tracker in a single click.</p>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="step-panel absolute inset-0 opacity-0 pointer-events-none" data-panel="3">
-                    <img src="assets/step4.png" alt="Track" class="w-full h-full object-contain object-center" style="background:#1A1A1A;">
-                    <div class="step-caption">
-                        <h3 class="text-xl font-bold mb-1">Your job search, organized.</h3>
-                        <p class="text-sm opacity-80">Every saved job becomes a clean row in your Tracker. Organized, searchable, and 100% yours.</p>
-                    </div>
+            <!-- Platforms: along the bottom of the pinned hero on desktop, after it elsewhere -->
+            <div class="platforms">
+                <p>Works on the job boards and ATS platforms you already use</p>
+                <div class="marquee-track">
+                    <div class="marquee-content" id="marquee-content"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Core Features -->
-    <section id="features" class="py-24 bg-slate-50 border-y border-slate-100 reveal">
-        <div class="section-inner">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Simple by design.</h2>
-                <p class="text-slate-500">One extension, one click, one place for all your applications.</p>
+    <!-- How it works -->
+    <section id="how-it-works" class="section how">
+        <div class="wrap">
+            <div class="how-head reveal">
+                <div>
+                    <div class="section-label">How it works</div>
+                    <h2 class="section-title">Track job search<br>in 1-click.</h2>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-12">
-                <!-- Feature 1 -->
-                <div class="group bg-white p-6 rounded-2xl border border-slate-200 reveal">
-                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-green-500 group-hover:text-white transition">
-                        <i class="fas fa-table text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Sheets-native</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">The tracker lives in your own Google Sheets, not our servers. No subscriptions, no lock-in.</p>
+            <div class="steps reveal">
+                <div class="step-list" role="tablist">
+                    <button class="step" data-step="0" role="tab">
+                        <span class="n">1</span>
+                        <div><h3>Connect</h3><p>Sign in once. TrackBee sets up your Tracker and only accesses the files it creates.</p></div>
+                        <span class="progress"></span>
+                    </button>
+                    <button class="step" data-step="1" role="tab">
+                        <span class="n">2</span>
+                        <div><h3>Browse</h3><p>A green <b>+</b> on the TrackBee icon means the job is ready to save.</p></div>
+                        <span class="progress"></span>
+                    </button>
+                    <button class="step" data-step="2" role="tab">
+                        <span class="n">3</span>
+                        <div><h3>Save</h3><p>Key job details land in your Tracker as a new row, with the job description saved to a linked Google Doc.</p></div>
+                        <span class="progress"></span>
+                    </button>
+                    <button class="step" data-step="3" role="tab">
+                        <span class="n">4</span>
+                        <div><h3>Track</h3><p>Sort, filter and update any application in a Sheet you own.</p></div>
+                        <span class="progress"></span>
+                    </button>
                 </div>
 
-                <!-- Feature 2 -->
-                <div class="group bg-white p-6 rounded-2xl border border-slate-200 reveal">
-                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-500 group-hover:text-white transition">
-                        <i class="fas fa-arrow-pointer text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Capture and Save</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Capture job data instantly with a single click or keyboard shortcut.</p>
-                </div>
+                <!-- Demo: a mock browser that plays each step (scripted in the "How-it-works demo" script below) -->
+                <div class="demo-stage" aria-hidden="true">
+                    <div class="demo-canvas">
+                        <div class="browser card">
+                            <div class="b-bar">
+                                <span class="b-dots"><i></i><i></i><i></i></span>
+                                <div class="b-url"><i class="fas fa-lock"></i><span class="u-page">figma.com/careers/senior-product-designer</span><span class="u-new">Search or type a URL</span></div>
+                                <div class="b-ext"><img src="assets/mrbee.png" alt=""><span class="b-badge">+</span></div>
+                            </div>
+                            <div class="b-page">
+                                <div class="jp-co">Figma · Careers</div>
+                                <h4>Senior Product Designer</h4>
+                                <div class="jp-meta"><span>San Francisco, CA</span><span>$170K – $220K</span><span>Full-time</span></div>
+                                <span class="jp-apply">Apply now</span>
+                                <div class="jp-h">About the role</div>
+                                <div class="bar w90"></div>
+                                <div class="bar w82"></div>
+                                <div class="bar w75"></div>
+                                <div class="jp-h">What you'll do</div>
+                                <div class="bar w82"></div>
+                                <div class="bar w60"></div>
+                            </div>
 
-                <!-- Feature 3 -->
-                <div class="group bg-white p-6 rounded-2xl border border-slate-200 reveal">
-                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-6 group-hover:bg-amber-500 group-hover:text-white transition">
-                        <i class="fas fa-magic-wand-sparkles text-xl"></i>
+                            <!-- Step 1 opens on an empty new tab -->
+                            <div class="b-newtab">
+                                <div class="nt-search"><i class="fas fa-magnifying-glass"></i></div>
+                                <div class="nt-tiles"><i></i><i></i><i></i><i></i><i></i></div>
+                            </div>
+
+                            <div class="popup">
+                                <div class="p-head">
+                                    <b>TrackBee</b>
+                                    <span class="p-menu"><i></i><i></i><i></i></span>
+                                </div>
+                                <div class="p-dropdown">
+                                    <span class="p-signin">Sign In with Google</span>
+                                    <span>Support Center</span>
+                                    <span>Send Feedback</span>
+                                </div>
+                                <div class="p-body">
+                                    <div class="p-form">
+                                        <div class="p-field" data-f="1"><label>Job Title</label><div class="p-input"><span>Senior Product Designer</span></div></div>
+                                        <div class="p-field" data-f="2"><label>Company</label><div class="p-input"><span>Figma</span></div></div>
+                                        <div class="p-field" data-f="3"><label>Compensation</label><div class="p-input"><span>$170K – $220K</span></div></div>
+                                        <div class="p-field" data-f="4"><label>Location</label><div class="p-input"><span>San Francisco, CA</span></div></div>
+                                        <div class="p-field" data-f="5"><label>URL</label><div class="p-input"><span>https://figma.com/careers/senior-product-designer</span></div></div>
+                                        <div class="p-field"><label>Status</label><div class="p-input p-select">Applied</div></div>
+                                        <div class="p-field" data-f="6"><label>Notes</label><div class="p-input p-notes"><em>Add notes here...</em><span>Dream job!</span></div></div>
+                                        <div class="p-save"><span class="p-save-a">Save to Tracker</span><span class="p-save-b"><i class="fas fa-check"></i> Saved to Tracker</span></div>
+                                        <div class="p-hint"><b>Shift + Enter</b> to save</div>
+                                    </div>
+                                    <div class="p-connected">
+                                        <span class="p-check"><i class="fas fa-check"></i></span>
+                                        <b>Connected to Google</b>
+                                        <span>Your Tracker is ready in Drive.</span>
+                                        <span class="p-file"><span class="file-icon sheets"></span>Application Tracker by TrackBee</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-tracker">
+                            <div class="doc-stack">
+                                <div class="card doc">
+                                    <div class="file-head">
+                                        <span class="file-icon docs"></span>
+                                        <span class="doc-name"><span class="path">TrackBee Job Descriptions /</span>Senior Product Designer</span>
+                                    </div>
+                                    <div class="doc-body">
+                                        <h5>Senior Product Designer</h5>
+                                        <div class="kv"><b>Company:</b> Figma</div>
+                                        <div class="kv x"><b>Location:</b> San Francisco, CA</div>
+                                        <div class="kv"><b>Compensation:</b> $170K–$220K</div>
+                                        <div class="kv x"><b>Original posting:</b> <span class="u">figma.com/careers/…</span></div>
+                                        <div class="kv"><b>Date saved:</b> 2026-10-27</div>
+                                        <hr>
+                                        <div class="h x">About the role</div>
+                                        <div class="bar w90"></div>
+                                        <div class="bar w82"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card sheet">
+                                <div class="file-head"><span class="file-icon sheets"></span> Application Tracker by TrackBee</div>
+                                <table>
+                                    <tr><th class="c-title">Job Title</th><th class="d-co">Company</th><th class="c-pay">Compensation</th><th class="c-status">Status</th><th class="c-doc">Saved Copy</th></tr>
+                                    <tr><td>UX Designer</td><td class="d-co">Stripe</td><td>$140K–$175K</td><td><span class="pill">Applied</span></td><td><span class="link">Open Doc</span></td></tr>
+                                    <tr><td>Design Lead</td><td class="d-co">Airbnb</td><td>$185K–$230K</td><td><span class="pill int">Interviewing</span></td><td><span class="link">Open Doc</span></td></tr>
+                                    <tr><td>Product Designer</td><td class="d-co">Notion</td><td>$150K–$190K</td><td><span class="pill saved">Saved</span></td><td><span class="link">Open Doc</span></td></tr>
+                                    <tr class="new"><td>Senior Product Designer</td><td class="d-co">Figma</td><td>$170K–$220K</td><td><span class="pill">Applied</span></td><td><span class="link">Open Doc</span></td></tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <svg class="d-cursor" viewBox="0 0 18 22"><path d="M1.5 1.5v15.5l4.2-3.9 2.9 6.6 2.6-1.1-2.9-6.5h5.9z" fill="#1c1917" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Multi-platform Ready</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">Supports LinkedIn, Indeed and major ATS platforms like Ashby, Greenhouse and Workday.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust & Privacy -->
-    <section id="privacy" class="py-24">
-        <div class="section-inner">
-            <div class="bg-slate-900 text-white p-8 md:p-12 rounded-3xl relative overflow-hidden reveal">
-            <div class="absolute top-0 right-0 p-8 opacity-10">
-                <i class="fas fa-user-shield text-9xl"></i>
+    <!-- Features -->
+    <section id="features" class="section">
+        <div class="wrap">
+            <div class="reveal">
+                <div class="section-label">Why TrackBee</div>
+                <h2 class="section-title">Simple by design.</h2>
             </div>
-            
-            <div class="relative z-10">
-                <div class="inline-block bg-amber-500 text-slate-900 px-4 py-1 rounded-full text-xs font-bold uppercase mb-4">
-                    Privacy First
+            <div class="features">
+                <div class="card feature wide reveal">
+                    <div>
+                        <div class="ico" style="background:#dcfce7;color:var(--sheet-green)"><i class="fas fa-table"></i></div>
+                        <h3>A spreadsheet you already know</h3>
+                        <p>Your Tracker is a normal Google Sheet. Sort it, filter it, add columns, share it. No new app to learn, no subscription, no lock-in.</p>
+                    </div>
+                    <div class="cols">
+                        <span>Date</span><span>Job Title</span><span>Company</span><span>Status</span><span>Compensation</span>
+                        <span>Location</span><span>Notes</span><span>URL</span><span>Job Description</span><span class="new">Saved Copy</span>
+                    </div>
                 </div>
-                <h2 class="text-3xl font-bold mb-6">Zero-Fluff. Maximum Trust.</h2>
-                <p class="text-lg text-slate-300 mb-8">Your data never touches our servers. Here's exactly how it works.</p>
-                
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                        <span>We never collect or store your data.</span>
-                    </li>
-                
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                        <span>We never sell your data or share it with third parties.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                        <span>We only access the Tracker sheet and the TrackBee Job Descriptions folder we create for you, nothing else in your Drive.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                        <span>Your data flows directly from your browser to your Google Sheets Tracker.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                        <span>We never scrape your browsing history.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                        <span>No account required. We don't know your name, email, or identity.</span>
-                    </li>
-                </ul>
+                <div class="card feature reveal">
+                    <div class="ico" style="background:var(--honey-soft);color:var(--honey-deep)"><i class="fas fa-bolt"></i></div>
+                    <h3>One click</h3>
+                    <p>Save with a click or Shift + Enter. Title, company, pay, location and description are filled in for you.</p>
+                </div>
+                <div class="card feature reveal">
+                    <div class="ico" style="background:#dbeafe;color:var(--doc-blue)"><i class="fas fa-file-lines"></i></div>
+                    <h3>Descriptions kept</h3>
+                    <p>A Google Doc copy of every job description, safe in your Drive after the posting is gone.</p>
+                </div>
+                <div class="card feature reveal">
+                    <div class="ico" style="background:#f3e8ff;color:#7e22ce"><i class="fas fa-globe"></i></div>
+                    <h3>Works everywhere</h3>
+                    <p>LinkedIn, Indeed, and ATS platforms like Greenhouse, Lever, Ashby and Workday.</p>
+                </div>
+                <div class="card feature reveal">
+                    <div class="ico" style="background:#fee2e2;color:#b91c1c"><i class="fas fa-heart"></i></div>
+                    <h3>Free</h3>
+                    <p>No plans or paywalls. If TrackBee helps, you can <a href="https://buymeacoffee.com/eemia.studio" target="_blank" rel="noopener" style="text-decoration:underline">buy us a coffee</a>.</p>
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
-    <!-- Roadmap -->
-    <!--  SECTION HIDDEN
-    <section class="py-24 max-w-7xl mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-12">Our Roadmap</h2>
-        <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
-            <div class="bg-amber-50 border-2 border-amber-200 p-6 rounded-2xl w-full max-w-xs relative text-left">
-                <div class="absolute -top-3 -left-3 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">ACTIVE</div>
-                <h4 class="font-bold mb-2">Phase 1: Google Sheets</h4>
-                <p class="text-sm text-slate-600">Perfecting the "save to spreadsheet" experience with custom field mapping.</p>
-            </div>
-            <i class="fas fa-arrow-right text-slate-200 hidden md:block"></i>
-            <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl w-full max-w-xs opacity-60 text-left">
-                <h4 class="font-bold mb-2">Phase 2: Notion</h4>
-                <p class="text-sm text-slate-600">The "Sweet Spot" for Kanban and rich notes lovers. Native Notion API integration.</p>
-            </div>
-            <i class="fas fa-arrow-right text-slate-200 hidden md:block"></i>
-            <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl w-full max-w-xs opacity-60 text-left">
-                <h4 class="font-bold mb-2">Phase 3: Custom DB</h4>
-                <p class="text-sm text-slate-600">Advanced features only if 1,000+ users ask for it. Ownership remains yours.</p>
+    <!-- Privacy -->
+    <section id="privacy" class="section" style="padding-top:0">
+        <div class="wrap">
+            <div class="privacy reveal">
+                <div class="section-label">Privacy first</div>
+                <h2 class="section-title">Your job search stays yours.</h2>
+                <p class="section-lede">Your data goes straight from your browser to your own Google account. It never touches our servers.</p>
+                <div class="privacy-grid">
+                    <div><i class="fas fa-check"></i><span>We never collect, store or sell your data.</span></div>
+                    <div><i class="fas fa-check"></i><span>No TrackBee account. We don't know your name or email.</span></div>
+                    <div><i class="fas fa-check"></i><span>We only access the Tracker sheet and the TrackBee Job Descriptions folder we create, nothing else in your Drive.</span></div>
+                    <div><i class="fas fa-check"></i><span>We never read your browsing history.</span></div>
+                </div>
+                <a class="more" href="privacy.html">Read the privacy policy <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
-    -->
 
     <!-- Final CTA -->
-    <section class="bg-amber-500 text-slate-900 py-24 text-center px-6">
-        <h2 class="text-4xl font-bold mb-6">Free, private, and in a Sheet you own.</h2>
-        <p class="text-slate-800 mb-10 max-w-xl mx-auto text-lg leading-relaxed">
-            Use TrackBee to power your job search workflow
-        </p>
-        <a href="https://chromewebstore.google.com/detail/trackbee-job-tracker-for/ncgglpjphaeeijgcmfojhafficeecapo" target="_blank" class="bg-slate-900 text-white px-10 py-5 rounded-xl font-bold text-xl hover:bg-slate-800 transition inline-flex items-center gap-3 shadow-2xl">
-             Add to Chrome
-        </a>
+    <section class="final">
+        <div class="wrap">
+            <img class="bee" src="assets/mrbee.png" alt="Mr. Bee, the TrackBee mascot">
+            <h2>Your next application deserves a better spreadsheet.</h2>
+            <p>Free, private, and in a Sheet you own.</p>
+            <div class="hero-cta">
+                <a href="https://chromewebstore.google.com/detail/trackbee-job-tracker-for/ncgglpjphaeeijgcmfojhafficeecapo" target="_blank" rel="noopener" class="btn btn-primary">
+                    <i class="fab fa-chrome"></i> Start tracking, it's free
+                </a>
+                <a href="https://buymeacoffee.com/eemia.studio" target="_blank" rel="noopener" class="btn btn-ghost">
+                    <i class="fas fa-mug-hot"></i> Support us
+                </a>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-slate-100 text-center px-6 text-slate-500">
-        <div class="flex flex-wrap justify-center gap-6 text-sm mb-8 font-medium">
-            <a href="terms.html" class="hover:text-amber-600 transition">Terms of Service</a>
-            <a href="privacy.html" class="hover:text-amber-600 transition">Privacy Policy</a>
-            <a href="support.html" class="hover:text-amber-600 transition">Support Center</a>
-            <a href="mailto:support@usetrackbee.com?subject=TrackBee%20Inquiry" class="hover:text-amber-600 transition">Contact Us</a>
+    <footer class="footer">
+        <div class="wrap footer-inner">
+            <span>&copy; 2026 TrackBee. Built for speed and ownership.</span>
+            <nav>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="support.html">Support Center</a>
+                <a href="mailto:support@usetrackbee.com?subject=TrackBee%20Inquiry">Contact Us</a>
+            </nav>
         </div>
-        <p class="text-xs">&copy; 2026 TrackBee. Built for speed and ownership.</p>
     </footer>
 
-        <!-- Tab Switching Logic -->
-        <script>
-            (() => {
-                // ── Scroll-reveal ─────────────────────────────────────────────────────
-                const revealObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
-                }, { threshold: 0.12 });
-                document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-                // ── Auto-tab switcher ─────────────────────────────────────────────────
-                const stepBtns = Array.from(document.querySelectorAll('.step-btn'));
-                const panels   = Array.from(document.querySelectorAll('.step-panel'));
-                const STEPS    = stepBtns.length;
-                const DURATION = 5000;
-                let activeStep = 0;
-                let timer      = null;
-
-                // Inject fill div and restore simple number circles
-                stepBtns.forEach((btn, i) => {
-                    const num = btn.querySelector('.step-num');
-                    num.innerHTML = `${i + 1}`;
-
-                    // Add fill layer behind button content
-                    const fill = document.createElement('div');
-                    fill.className = 'step-btn-fill';
-                    btn.insertBefore(fill, btn.firstChild);
-                });
-
-                function activateStep(idx) {
-                    activeStep = idx;
-
-                    stepBtns.forEach((btn, i) => {
-                        const num  = btn.querySelector('.step-num');
-                        const fill = btn.querySelector('.step-btn-fill');
-                        const isActive = i === idx;
-
-                        btn.classList.toggle('active-step', isActive);
-                        num.classList.toggle('bg-amber-500',   isActive);
-                        num.classList.toggle('text-white',     isActive);
-                        num.classList.toggle('bg-slate-100',  !isActive);
-                        num.classList.toggle('text-slate-400', !isActive);
-
-                        // Reset fill instantly
-                        fill.style.transition = 'none';
-                        fill.style.width = '0%';
-                    });
-
-                    panels.forEach((p, i) => {
-                        const show = i === idx;
-                        p.style.opacity       = show ? '1' : '0';
-                        p.style.pointerEvents = show ? 'auto' : 'none';
-                        if (show) {
-                            p.style.transform = 'scale(0.97)';
-                            requestAnimationFrame(() => {
-                                p.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-                                p.style.transform  = 'scale(1)';
-                            });
-                        }
-                    });
-
-                    // Animate button fill upward over DURATION
-                    const activeFill = stepBtns[idx].querySelector('.step-btn-fill');
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            activeFill.style.transition = `width ${DURATION}ms linear`;
-                            activeFill.style.width = '100%';
-                        });
-                    });
-                }
-
-                function startTimer() {
-                    clearInterval(timer);
-                    timer = setInterval(() => {
-                        activateStep((activeStep + 1) % STEPS);
-                    }, DURATION);
-                }
-
-                stepBtns.forEach((btn, idx) => {
-                    btn.addEventListener('click', () => {
-                        activateStep(idx);
-                        startTimer();
-                    });
-                });
-
-                activateStep(0);
-                startTimer();
-            })();
-        </script>
-    
     <script>
-        // Rolling marquee banner
-        const platforms = [
-            'LinkedIn', 'Indeed', 'Greenhouse', 'Lever',
-            'Ashby', 'Workday', 'Rippling', 'SmartRecruiters'
-        ];
-        const track = document.getElementById('marquee-content');
+        (() => {
+            // Nav border once scrolled
+            const nav = document.getElementById('nav');
+            const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
 
-        // Duplicate list 3x for seamless loop
-        [...platforms, ...platforms, ...platforms].forEach((name) => {
-            const span = document.createElement('span');
-            span.className = 'marquee-item';
-            span.textContent = name;
-            track.appendChild(span);
-        });
+            // Scroll-reveal
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+            }, { threshold: 0.12 });
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+            // Platform marquee, list repeated 3x for a seamless loop
+            const platforms = ['LinkedIn', 'Indeed', 'Greenhouse', 'Lever', 'Ashby', 'Workday', 'Rippling', 'SmartRecruiters'];
+            const track = document.getElementById('marquee-content');
+            [...platforms, ...platforms, ...platforms].forEach((name) => {
+                const span = document.createElement('span');
+                span.className = 'marquee-item';
+                span.textContent = name;
+                track.appendChild(span);
+            });
+
+            // Hero → saved copy scene. On wide, tall-enough screens the scene pins and scroll
+            // progress drives it; elsewhere it stays a plain stacked layout.
+            const scene    = document.getElementById('scene');
+            const pin      = scene.querySelector('.scene-pin');
+            const heroCopy = scene.querySelector('.hero-copy');
+            const jdCopy   = scene.querySelector('.jd-copy');
+            const flow     = scene.querySelector('.flow');
+            const doc      = scene.querySelector('.doc-stack');
+            const bee      = scene.querySelector('.bee-trail');
+            const sheet    = scene.querySelector('.sheet');
+            const pinQuery = matchMedia('(min-width: 961px) and (min-height: 620px) and (prefers-reduced-motion: no-preference)');
+
+            const clamp = (v) => Math.min(1, Math.max(0, v));
+            const range = (p, a, b) => clamp((p - a) / (b - a));
+            const ease  = (t) => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            const soft  = (t) => t * t * (3 - 2 * t);
+            const lerp  = (a, b, t) => a + (b - a) * t;
+
+            function fade(el, amount, dy) {
+                el.style.opacity = 1 - amount;
+                el.style.transform = `translateY(${dy}px)`;
+                el.style.visibility = amount >= 1 ? 'hidden' : '';
+                el.style.pointerEvents = amount > .5 ? 'none' : '';
+            }
+
+            // Designed for a 1366×860 laptop; larger screens scale the whole scene up so it
+            // fills them the same way, never beyond what fits the window's height
+            let sceneScale = 1;
+            function updateSceneScale() {
+                const s = Math.min(1.45, Math.max(1, Math.min(innerWidth / 1366, (innerHeight - 68) / 792)));
+                if (Math.abs(s - sceneScale) < .005) return;
+                sceneScale = s;
+                document.documentElement.style.setProperty('--scene-scale', s.toFixed(3));
+            }
+
+            function renderScene() {
+                if (!scene.classList.contains('pinned')) return;
+                updateSceneScale();
+                const travel = scene.offsetHeight - pin.offsetHeight;
+                const p = clamp((parseFloat(getComputedStyle(pin).top) - scene.getBoundingClientRect().top) / travel);
+
+                const leave  = soft(range(p, 0, .24));   // hero copy and Tracker go
+                const grow   = ease(range(p, .05, .55));  // Doc becomes the full copy
+                const arrive = soft(range(p, .22, .46)); // saved-copy text comes in
+
+                fade(heroCopy, leave, -90 * leave);
+                fade(jdCopy, 1 - arrive, 90 * (1 - arrive));
+                sheet.style.opacity = 1 - ease(range(p, 0, .3));
+                sheet.style.transform = `translateY(${70 * leave}px) scale(${1 - .04 * leave})`;
+                bee.style.opacity = 1 - leave;
+                bee.style.transform = `translate(${-40 * leave}px, ${-60 * leave}px)`;
+
+                const fw = flow.clientWidth, fh = flow.clientHeight;
+                const startW = fw * .56, endW = Math.min(fw * .94, 520);
+                doc.style.width = lerp(startW, endW, grow) + 'px';
+                doc.style.left = lerp(fw - startW, (fw - endW) / 2, grow) + 'px';
+                doc.style.right = 'auto';
+                doc.style.fontSize = lerp(12.5, 14.5, grow) + 'px';
+                doc.style.setProperty('--t', range(grow, .35, 1));
+                doc.style.setProperty('--g', range(grow, 0, .4));
+                doc.style.zIndex = grow > .2 ? 3 : '';
+                doc.style.top = lerp(28, (fh - doc.offsetHeight) / 2, grow) + 'px';
+            }
+
+            function setPinned() {
+                const on = pinQuery.matches;
+                scene.classList.toggle('pinned', on);
+                [heroCopy, jdCopy, sheet, doc, bee].forEach(el => el.removeAttribute('style'));
+                if (!on) { sceneScale = 1; document.documentElement.style.removeProperty('--scene-scale'); }
+                if (on) { jdCopy.classList.add('visible'); renderScene(); }
+            }
+
+            let sceneFrame = null;
+            const queueScene = () => { if (!sceneFrame) sceneFrame = requestAnimationFrame(() => { sceneFrame = null; renderScene(); }); };
+            window.addEventListener('scroll', queueScene, { passive: true });
+            window.addEventListener('resize', queueScene);
+            pinQuery.addEventListener('change', setPinned);
+            setPinned();
+
+            // How-it-works demo: a mock browser plays each step, then moves on to the next.
+            // State lives in is-* classes on the canvas; the CSS draws each one.
+            const steps   = Array.from(document.querySelectorAll('.step'));
+            const stage   = document.querySelector('.demo-stage');
+            const canvas  = stage.querySelector('.demo-canvas');
+            const cursor  = canvas.querySelector('.d-cursor');
+            const calm    = matchMedia('(prefers-reduced-motion: reduce)');
+            const CANVAS_H = 556;
+            let canvasW = 720;
+
+            const on    = (...c) => canvas.classList.add(...c.map(x => 'is-' + x));
+            const off   = (...c) => canvas.classList.remove(...c.map(x => 'is-' + x));
+            const click = () => { cursor.classList.add('down'); setTimeout(() => cursor.classList.remove('down'), 160); };
+            function point(selector, ax = .5, ay = .5) {
+                const r = canvas.querySelector(selector).getBoundingClientRect();
+                const c = canvas.getBoundingClientRect();
+                const s = c.width / canvasW;
+                cursor.style.left = ((r.left - c.left) + r.width * ax) / s - 2 + 'px';
+                cursor.style.top  = ((r.top - c.top) + r.height * ay) / s - 2 + 'px';
+            }
+
+            // Each step: how long it plays, the state it opens on, the timed actions, and where it ends up
+            const SCRIPT = [
+                { dur: 6000, start: ['newtab'], end: ['pop', 'connected'], acts: [
+                    [400,  () => point('.b-ext', .45, .5)],
+                    [1300, () => { click(); on('pop'); }],
+                    [1900, () => point('.p-menu')],
+                    [2500, () => { click(); on('menu'); }],
+                    [3100, () => point('.p-signin', .4)],
+                    [3700, () => { click(); on('hl'); }],
+                    [4100, () => { off('menu', 'hl'); on('connected'); }],
+                ]},
+                { dur: 3800, start: ['blank'], end: ['badge', 'hover'], acts: [
+                    [200,  () => off('blank')],
+                    [1100, () => on('badge')],
+                    [1700, () => point('.b-ext', .45, .5)],
+                    [2400, () => on('hover')],
+                ]},
+                { dur: 6600, start: ['pop', 'badge'], end: ['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'saved'], acts: [
+                    [400,  () => on('f1')],
+                    [850,  () => on('f2')],
+                    [1300, () => on('f3')],
+                    [1750, () => on('f4')],
+                    [2200, () => on('f5')],
+                    [2650, () => point('.p-notes', .3)],
+                    [3300, () => { click(); on('f6'); }],
+                    [3900, () => point('.p-save', .45)],
+                    [4700, () => { click(); on('pressing'); }],
+                    [4950, () => { off('pressing'); on('saved'); }],
+                ]},
+                { dur: 5400, start: ['badge', 'tracker'], end: ['row', 'doc'], acts: [
+                    [500,  () => on('row')],
+                    [1500, () => point('.sheet tr.new .link', .45)],
+                    [2200, () => { click(); on('doc'); }],
+                ]},
+            ];
+
+            let active = 0, timers = [], visible = false;
+
+            function reset(step, tokens) {
+                canvas.className = 'demo-canvas snap' + (canvasW < 720 ? ' is-narrow' : '');
+                on(...tokens);
+                cursor.style.left = canvasW * .42 + 'px';
+                cursor.style.top = CANVAS_H * .62 + 'px';
+                void canvas.offsetWidth;
+                requestAnimationFrame(() => canvas.classList.remove('snap'));
+            }
+
+            function show(i) {
+                timers.forEach(clearTimeout);
+                timers = [];
+                active = i;
+                const step = SCRIPT[i];
+                steps.forEach((btn, j) => {
+                    btn.classList.toggle('active', j === i);
+                    btn.classList.remove('run');
+                    btn.style.setProperty('--fill', 0);
+                    btn.setAttribute('aria-selected', j === i);
+                });
+
+                if (calm.matches) { reset(i, [...step.start, ...step.end, 'still']); return; }
+
+                reset(i, step.start);
+                step.acts.forEach(([t, act]) => timers.push(setTimeout(act, t)));
+                timers.push(setTimeout(() => show((i + 1) % SCRIPT.length), step.dur));
+                // Fill this step's rail segment over the step's length
+                const btn = steps[i];
+                btn.style.setProperty('--dur', step.dur + 'ms');
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    btn.classList.add('run');
+                    btn.style.setProperty('--fill', 1);
+                }));
+            }
+
+            // The canvas is drawn at a fixed size and scaled to fit; narrow screens get a narrower canvas
+            function fit() {
+                const w = stage.clientWidth;
+                const nextW = w < 600 ? 480 : 720;
+                const s = w / nextW;
+                canvas.style.transform = `scale(${s})`;
+                canvas.style.width = nextW + 'px';
+                stage.style.height = CANVAS_H * s + 'px';
+                if (nextW !== canvasW) { canvasW = nextW; canvas.classList.toggle('is-narrow', canvasW < 720); }
+            }
+            new ResizeObserver(fit).observe(stage);
+            fit();
+
+            // Play only while the demo is on screen
+            new IntersectionObserver(([entry]) => {
+                visible = entry.isIntersecting;
+                if (visible) show(active);
+                else { timers.forEach(clearTimeout); timers = []; }
+            }, { threshold: .35 }).observe(stage);
+
+            steps.forEach((btn, i) => btn.addEventListener('click', () => show(i)));
+            reset(0, SCRIPT[0].start);
+        })();
     </script>
 
 </body>

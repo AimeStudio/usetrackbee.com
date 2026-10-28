@@ -96,7 +96,13 @@
 .no-results p { margin: 0; }
 
 /* Support: contact form */
-.contact { margin-top: 80px; padding-top: 72px; border-top: 1px solid var(--line); scroll-margin-top: 80px; }
+/* Same cream tint and glow as the page header */
+.contact { position: relative; overflow: hidden; isolation: isolate; padding: 88px 0 96px; border-top: 1px solid var(--line); scroll-margin-top: 68px; }
+.contact::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background: radial-gradient(600px 360px at 50% 0%, rgba(245, 179, 1, .16), transparent 70%);
+}
+@media (max-width: 640px) { .contact { padding: 64px 0 72px; } }
 .contact-head { text-align: center; margin-bottom: 32px; }
 .contact-head h2 { font-size: clamp(32px, 4.6vw, 44px); font-weight: 800; }
 .contact-head p { margin: 12px 0 0; font-size: 17px; color: var(--ink-2); }
